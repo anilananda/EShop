@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EShop.Model
+﻿namespace EShop.Model
 {
-    public class User
+    public class User : Audit
     {
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public int LoginFaildAttemptCount { get; set; }
+        public bool IsLock { get; set; }
     }
 }
