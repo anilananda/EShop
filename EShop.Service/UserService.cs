@@ -1,33 +1,20 @@
-﻿using EShop.Model;
-using System;
+﻿using EShop.Data.Repositories;
+using EShop.Model;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace EShop.Service
 {
     public class UserService : IUserService
     {
-        private readonly List<User> users = new List<User>()
-            {
-                new User()
-                {
-                    Id=1,
-                    UserName="Anilananda"
-                },
-                new User()
-                {
-                    Id=2,
-                    UserName="Arun"
-                }
-            };
-        public User GetUserByIdAsync(int Id)
+        private readonly IUserRepository _userRepository;
+        public UserService(IUserRepository userRepository)
         {
-            return users.FirstOrDefault(x => x.Id == Id);
+            _userRepository = userRepository;
         }
-
-        public IEnumerable<User> GetUsersAsync()
+        public async Task<List<User>> GetUsersAsync()
         {
-            throw new NotImplementedException();
+            return await _userRepository.GetAll();
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using EShop.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EShop.Service
 {
     public interface IUserService
     {
-        public IEnumerable<User> GetUsersAsync();
-        public User GetUserByIdAsync(int Id);
+        public Task<List<User>> GetUsersAsync();
+        
     }
 }

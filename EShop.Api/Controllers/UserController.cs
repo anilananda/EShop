@@ -1,6 +1,6 @@
-﻿using EShop.Model;
+﻿using EShop.Service;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EShop.Api.Controllers
 {
@@ -9,22 +9,10 @@ namespace EShop.Api.Controllers
     public class UserController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetUser()
+        public async Task<IActionResult> GetUser([FromServices] IUserService userService)
         {
-            List<User> users = new List<User>()
-            {
-                new User()
-                {
-                    Id=1,
-                    UserName="Anilananda"
-                },
-                new User()
-                {
-                    Id=2,
-                    UserName="Arun"
-                }
-            };
-            return Ok(users);
+            var result = await userService.GetUsersAsync();
+            return Ok(result);
         }
     }
 }
